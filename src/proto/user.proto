@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message User {
+  string username = 1;
+  int32 followers = 2;
+}
+
+service UserService {
+  rpc CreateUser(User) returns (User);
+  rpc GetUsers(Empty) returns (stream User);
+}
+
+message Empty {}

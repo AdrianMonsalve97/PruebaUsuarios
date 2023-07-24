@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Button, Container, Typography, Box } from "@mui/material";
+import { Button, Card, CardContent, Container, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import ErrorMessage from "../ErrorMessage";
 
 const SearchUser = () => {
@@ -41,42 +43,53 @@ const SearchUser = () => {
 
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Buscar Usuarios de GitHub
-      </Typography>
-      <div style={{ marginBottom: "10px", display: "flex", alignItems: "center" }}>
-        <input
-          type="text"
-          value={username}
-          onChange={handleChange}
-          placeholder="Ingrese el nombre de usuario"
-          style={{ marginRight: "10px", padding: "5px" }}
-        />
-        <Button variant="contained" onClick={handleSearch}>
-          Buscar
-        </Button>
-      </div>
-      {error && (
-        <Typography variant="body1" color="error" gutterBottom>
-          {error}
-        </Typography>
-      )}
+      <Card>
+        <CardContent>
+          <Typography variant="h5" gutterBottom>
+            Buscar Usuario de GitHub
+          </Typography>
+          <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+            <FontAwesomeIcon icon={faSearch} style={{ marginRight: "10px" }} />
+            <input
+              type="text"
+              value={username}
+              onChange={handleChange}
+              placeholder="Ingrese el nombre de usuario"
+              style={{ padding: "5px", marginRight: "10px" }}
+            />
+            <Button variant="contained" onClick={handleSearch}>
+              Buscar
+            </Button>
+          </div>
+          {error && (
+            <Typography variant="body1" color="error" gutterBottom>
+              {error}
+            </Typography>
+          )}
 
-      {users.length > 0 && (
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h6">Resultados de la búsqueda:</Typography>
-          <ul>
-            {users.map((user) => (
-              <li key={user.id}>
-                <Link to={`/user/${user.login}`}>{user.login}</Link>
-              </li>
-            ))}
-          </ul>
-          <Button variant="contained" component={Link} to="/followers-chart" sx={{ mt: 2 }}>
-            Ver Gráfica de Seguidores
-          </Button>
-        </Box>
-      )}
+          {users.length > 0 && (
+            <div>
+              <Typography variant="h6" sx={{ mt: 2 }}>
+                Resultados de la búsqueda:
+              </Typography>
+              <ul>
+                {users.map((user) => (
+                  <li key={user.id}>
+                    <FontAwesomeIcon icon={faUser} style={{ marginRight: "5px" }} />
+                    <Link to={`/user/${user.login}`}>{user.login}</Link>
+                  </li>
+                ))}
+              </ul>
+
+              <Link to="/followers-chart" style={{ textDecoration: "none" }}>
+                <Button variant="contained" sx={{ mt: 2 }}>
+                  Ver Gráfico de Seguidores
+                </Button>
+              </Link>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </Container>
   );
 };

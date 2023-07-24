@@ -13,6 +13,7 @@ import {
   Divider,
   Avatar,
   Box,
+  Button,
 } from "@mui/material";
 import { GitHub, Email, Twitter, PeopleAlt } from "@mui/icons-material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -35,6 +36,26 @@ const UserProfile = () => {
 
     fetchUserData();
   }, [username]);
+
+  const handleExportUserData = async () => {
+    try {
+      // Envía la información del usuario al backend
+      const response = await axios.post("http://localhost:3001/api/users", {
+        username: userData.login,
+        followers: userData.followers,
+      });
+
+      // Verifica si la solicitud fue exitosa
+      if (response.status === 201) {
+        alert("Usuario exportado exitosamente.");
+      } else {
+        alert("Error al exportar el usuario.");
+      }
+    } catch (error) {
+      console.error("Error al exportar el usuario:", error);
+      alert("Error al exportar el usuario.");
+    }
+  };
 
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
@@ -66,7 +87,7 @@ const UserProfile = () => {
               <Typography variant="body2" sx={{ display: "flex", alignItems: "center", mt: 2 }}>
                 <GitHub />
                 <Box component="span" sx={{ ml: 1 }}>
-                  <MuiLink href={`https://github.com/${userData.login}`} target="_blank" rel="noopener noreferrer">
+                  <MuiLink href={userData.html_url} target="_blank" rel="noopener noreferrer">
                     {userData.login}
                   </MuiLink>
                 </Box>
@@ -109,6 +130,9 @@ const UserProfile = () => {
                   </Box>
                 </Typography>
               </Box>
+              <Button variant="contained" color="primary" onClick={() => handleExportUserData()}>
+                Exportar
+              </Button>
             </CardContent>
           </>
         ) : error ? (
