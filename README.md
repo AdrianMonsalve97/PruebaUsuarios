@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Prueba Usuarios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![GitHub](https://img.shields.io/github/license/AdrianMonsalve97/prueba-usuarios)
+![GitHub last commit](https://img.shields.io/github/last-commit/AdrianMonsalve97/prueba-usuarios)
+![GitHub stars](https://img.shields.io/github/stars/AdrianMonsalve97/prueba-usuarios?style=social)
 
-## Available Scripts
+Descripción breve del proyecto.
 
-In the project directory, you can run:
+## Tabla de contenidos
 
-### `npm start`
+- [Prueba Usuarios](#prueba-usuarios)
+  - [Tabla de contenidos](#tabla-de-contenidos)
+  - [Instalación](#instalación)
+  - [Uso](#uso)
+  - [Contribuciones](#contribuciones)
+  - [Licencia](#licencia)
+  - [Configuración de la base de datos](#configuración-de-la-base-de-datos)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Instalación
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clona el repositorio: `git clone https://github.com/AdrianMonsalve97/prueba-usuarios.git`
+2. Ingresa a la carpeta del proyecto: `cd prueba-usuarios`
+3. Instala las dependencias: `npm install`
 
-### `npm test`
+## Uso
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para utilizar este proyecto, sigue los siguientes pasos:
 
-### `npm run build`
+1. Ejecuta el servidor: `npm start`
+2. Abre tu navegador y visita `http://localhost:3000`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contribuciones
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+¡Las contribuciones son bienvenidas! Si deseas contribuir al proyecto, sigue estos pasos:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Haz un fork del repositorio
+2. Crea una rama para tus cambios: `git checkout -b mi-feature`
+3. Haz tus cambios y commitea: `git commit -m "Agrega una nueva característica"`
+4. Sube tus cambios: `git push origin mi-feature`
+5. Abre un Pull Request en GitHub
 
-### `npm run eject`
+## Licencia
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Configuración de la base de datos
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Este proyecto utiliza una base de datos llamada "pruebauser". Puedes utilizar Docker para ejecutar la base de datos en local siguiendo estos pasos:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Asegúrate de tener Docker instalado en tu máquina.
+2. Abre una terminal y ejecuta el siguiente comando para crear un contenedor de MySQL:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```bash
+   docker run -d -p 3306:3306 --name pruebauser -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=pruebauser mysql:latest
+   Una vez que el contenedor esté en ejecución, puedes conectarte a la base de datos utilizando el usuario "root" y la contraseña "password".
+   Ahora puedes ejecutar el servidor Node.js y probar la aplicación en local.
